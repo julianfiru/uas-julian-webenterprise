@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi OAuth2 & JWT - Sleepy Panda</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1a1a2e;
+            background: #fff;
+            padding: 40px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f0f23;
+            margin-bottom: 8px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #19b7a7;
+        }
+        
+        h1.main-title {
+            font-size: 32px;
+            text-align: center;
+            border-bottom: none;
+            margin-bottom: 4px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #19b7a7;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        
+        p {
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        th {
+            background: #19b7a7;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        tr:hover {
+            background: #e8f7f6;
+        }
+        
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #e83e8c;
+        }
+        
+        pre {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        .keyword { color: #cba6f7; }
+        .string { color: #a6e3a1; }
+        .comment { color: #6c7086; }
+        .function { color: #89b4fa; }
+        .variable { color: #f9e2af; }
+        
+        blockquote {
+            background: #f0fdf9;
+            border-left: 4px solid #19b7a7;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #333;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #e8f7f6 0%, #d4f1ef 100%);
+            border: 1px solid #19b7a7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background: #fff8e6;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .check { color: #28a745; font-weight: bold; }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .diagram {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            color: #19b7a7;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+        
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .summary-table td:first-child {
+            font-weight: 600;
+            width: 40%;
+        }
+        
+        @media print {
+            body {
+                padding: 20px 40px;
+            }
+            pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">📚 DOKUMENTASI OAUTH2 & JWT</h1>
+    <p class="subtitle">Implementasi pada Sleepy Panda Admin Dashboard</p>
+    
+    <div class="toc">
+        <h3>📑 Daftar Isi</h3>
+        <ul>
+            <li>1. Penjelasan Umum</li>
+            <li>2. Peran di Sleepy Panda</li>
+            <li>3. Cara Kerja di Sleepy Panda</li>
+            <li>4. Panduan Presentasi</li>
+            <li>5. Diagram Visual</li>
+            <li>6. Kesimpulan</li>
+        </ul>
+    </div>
+
+    <h1>1. PENJELASAN UMUM</h1>
+    
+    <h2>1.1 Apa itu OAuth2?</h2>
+    <p><strong>OAuth2 (Open Authorization 2.0)</strong> adalah standar protokol otorisasi yang memungkinkan aplikasi pihak ketiga mengakses sumber daya pengguna tanpa perlu mengetahui kredensial (username/password) pengguna secara langsung.</p>
+    
+    <blockquote>
+        <strong>Analogi Sederhana:</strong><br>
+        Bayangkan OAuth2 seperti <strong>kartu kunci hotel</strong>. Ketika Anda check-in, Anda memberikan identitas (KTP). Hotel memverifikasi dan memberikan kartu kunci yang hanya bisa membuka kamar Anda selama periode tertentu. Anda tidak perlu memberikan kunci master hotel kepada siapapun.
+    </blockquote>
+    
+    <h3>Komponen Utama OAuth2:</h3>
+    <table>
+        <tr>
+            <th>Komponen</th>
+            <th>Deskripsi</th>
+        </tr>
+        <tr>
+            <td><strong>Resource Owner</strong></td>
+            <td>Pengguna yang memiliki data (user)</td>
+        </tr>
+        <tr>
+            <td><strong>Client</strong></td>
+            <td>Aplikasi yang ingin mengakses data</td>
+        </tr>
+        <tr>
+            <td><strong>Authorization Server</strong></td>
+            <td>Server yang mengeluarkan token (Laravel Passport)</td>
+        </tr>
+        <tr>
+            <td><strong>Resource Server</strong></td>
+            <td>Server yang menyimpan data (API endpoints)</td>
+        </tr>
+    </table>
+
+    <h2>1.2 Apa itu JWT?</h2>
+    <p><strong>JWT (JSON Web Token)</strong> adalah standar terbuka (RFC 7519) untuk mentransmisikan informasi secara aman antara dua pihak dalam bentuk objek JSON yang ditandatangani secara digital.</p>
+    
+    <h3>Struktur JWT:</h3>
+    <pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></pre>
+    
+    <p>JWT terdiri dari 3 bagian yang dipisahkan titik (.):</p>
+    
+    <table>
+        <tr>
+            <th>Bagian</th>
+            <th>Nama</th>
+            <th>Isi</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><strong>Header</strong></td>
+            <td>Algoritma (HS256/RS256) dan tipe token</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><strong>Payload</strong></td>
+            <td>Data/claims (user_id, email, expire time)</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><strong>Signature</strong></td>
+            <td>Tanda tangan digital untuk verifikasi</td>
+        </tr>
+    </table>
+    
+    <blockquote>
+        <strong>Analogi Sederhana:</strong><br>
+        JWT seperti <strong>tiket konser</strong> yang sudah di-stempel. Tiket berisi informasi nama, kursi, dan tanggal. Stempel (signature) membuktikan tiket asli dari penyelenggara. Siapapun bisa membaca info di tiket, tapi tidak bisa memalsukan stempel.
+    </blockquote>
+
+    <h2>1.3 Perbedaan OAuth2 dan JWT</h2>
+    <table>
+        <tr>
+            <th>Aspek</th>
+            <th>OAuth2</th>
+            <th>JWT</th>
+        </tr>
+        <tr>
+            <td><strong>Jenis</strong></td>
+            <td>Protokol/Framework</td>
+            <td>Format Token</td>
+        </tr>
+        <tr>
+            <td><strong>Fungsi</strong></td>
+            <td>Mengatur alur otorisasi</td>
+            <td>Menyimpan data terenkripsi</td>
+        </tr>
+        <tr>
+            <td><strong>Hubungan</strong></td>
+            <td>Menggunakan JWT sebagai token</td>
+            <td>Digunakan oleh OAuth2</td>
+        </tr>
+        <tr>
+            <td><strong>Standar</strong></td>
+            <td>RFC 6749</td>
+            <td>RFC 7519</td>
+        </tr>
+    </table>
+    
+    <div class="info-box">
+        <strong>💡 Kesimpulan:</strong> OAuth2 adalah <strong>protokol</strong>, JWT adalah <strong>format token</strong>. OAuth2 menggunakan JWT untuk membuat access token.
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>2. PERAN DI SLEEPY PANDA</h1>
+    
+    <h2>2.1 Arsitektur Authentication</h2>
+    <div class="diagram">
+┌─────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│   Browser   │      │  AuthController │      │    Database     │
+└──────┬──────┘      └────────┬────────┘      └────────┬────────┘
+       │                      │                        │
+       │  POST /login         │                        │
+       │  email + password    │                        │
+       │─────────────────────>│                        │
+       │                      │                        │
+       │                      │  SELECT * FROM users   │
+       │                      │───────────────────────>│
+       │                      │                        │
+       │                      │  User + hashed_password│
+       │                      │<───────────────────────│
+       │                      │                        │
+       │                      │  Hash::check()         │
+       │                      │  createToken() → JWT   │
+       │                      │───────────────────────>│
+       │                      │                        │
+       │  Redirect /dashboard │  Store token           │
+       │  + session(token)    │<───────────────────────│
+       │<─────────────────────│                        │
+    </div>
+
+    <h2>2.2 File-file yang Terlibat</h2>
+    <table>
+        <tr>
+            <th>File</th>
+            <th>Peran</th>
+        </tr>
+        <tr>
+            <td><code>AppServiceProvider.php</code></td>
+            <td>Konfigurasi token expiration (30 menit)</td>
+        </tr>
+        <tr>
+            <td><code>AuthController.php</code></td>
+            <td>Membuat token saat login</td>
+        </tr>
+        <tr>
+            <td><code>User.php</code></td>
+            <td>Model dengan HasApiTokens trait</td>
+        </tr>
+        <tr>
+            <td><code>.env</code></td>
+            <td>Konfigurasi hash algorithm & expire time</td>
+        </tr>
+    </table>
+
+    <h1>3. CARA KERJA DI SLEEPY PANDA</h1>
+    
+    <h2>3.1 Proses Registrasi</h2>
+    <pre><code><span class="comment">// AuthController.php - Line 149-153</span>
+<span class="variable">$user</span> = <span class="function">User::create</span>([
+    <span class="string">'email'</span> => <span class="variable">$request</span>->email,
+    <span class="string">'hashed_password'</span> => <span class="function">Hash::make</span>(<span class="variable">$request</span>->password), <span class="comment">// Bcrypt hash</span>
+]);</code></pre>
+    
+    <p><strong>Alur:</strong></p>
+    <ol>
+        <li>User mengisi form registrasi (email + password)</li>
+        <li>Password di-hash menggunakan <strong>Bcrypt</strong> (12 rounds)</li>
+        <li>Data disimpan ke tabel <code>users</code> dengan kolom <code>hashed_password</code></li>
+    </ol>
+
+    <h2>3.2 Proses Login</h2>
+    <pre><code><span class="comment">// AuthController.php - Line 100-124</span>
+
+<span class="comment">// 1. Verifikasi password dengan hash</span>
+<span class="keyword">if</span> (!<span class="function">Hash::check</span>(<span class="variable">$password</span>, <span class="variable">$user</span>->hashed_password)) {
+    <span class="keyword">return</span> <span class="function">redirect</span>()->back()->withErrors([...]);
+}
+
+<span class="comment">// 2. Buat JWT Token via Passport</span>
+<span class="variable">$token</span> = <span class="variable">$user</span>-><span class="function">createToken</span>(<span class="string">'SleepyPandaApp'</span>)->accessToken;
+
+<span class="comment">// 3. Simpan ke session</span>
+<span class="function">session</span>([
+    <span class="string">'user_id'</span> => <span class="variable">$user</span>->id,
+    <span class="string">'access_token'</span> => <span class="variable">$token</span>  <span class="comment">// JWT Token</span>
+]);
+
+<span class="comment">// 4. Redirect ke dashboard</span>
+<span class="keyword">return</span> <span class="function">redirect</span>()-><span class="function">route</span>(<span class="string">'dashboard'</span>);</code></pre>
+
+    <h2>3.3 Konfigurasi Token Expiration</h2>
+    <pre><code><span class="comment">// AppServiceProvider.php - Line 23-27</span>
+<span class="keyword">public function</span> <span class="function">boot</span>(): <span class="keyword">void</span>
+{
+    <span class="comment">// Token expire dalam 30 menit</span>
+    <span class="variable">$tokenExpireMinutes</span> = (<span class="keyword">int</span>) <span class="function">config</span>(<span class="string">'passport.token_expire_minutes'</span>, 30);
+    <span class="function">Passport::tokensExpireIn</span>(<span class="function">now</span>()-><span class="function">addMinutes</span>(<span class="variable">$tokenExpireMinutes</span>));
+}</code></pre>
+
+    <p><strong>Konfigurasi di .env:</strong></p>
+    <pre><code>PASSPORT_HASH_ALGORITHM=sha256
+PASSPORT_TOKEN_EXPIRE_MINUTES=30</code></pre>
+
+    <div class="page-break"></div>
+
+    <h1>4. PANDUAN PRESENTASI</h1>
+    
+    <h2>4.1 Cara Menunjukkan OAuth2 & JWT Sudah Terimplementasi</h2>
+    
+    <h3>✅ Bukti 1: Tabel oauth_* di Database</h3>
+    <p>Buka phpMyAdmin atau MySQL client dan jalankan:</p>
+    <pre><code>SHOW TABLES LIKE 'oauth_%';</code></pre>
+    <p><strong>Output yang diharapkan:</strong></p>
+    <ul>
+        <li><code>oauth_access_tokens</code> - Menyimpan JWT tokens</li>
+        <li><code>oauth_auth_codes</code> - Kode otorisasi</li>
+        <li><code>oauth_clients</code> - Client applications</li>
+        <li><code>oauth_refresh_tokens</code> - Refresh tokens</li>
+    </ul>
+
+    <h3>✅ Bukti 2: Token Record di Database</h3>
+    <pre><code>SELECT id, user_id, name, created_at FROM oauth_access_tokens 
+ORDER BY created_at DESC LIMIT 5;</code></pre>
+    <p>Tunjukkan bahwa setiap login membuat record baru di tabel ini.</p>
+
+    <h3>✅ Bukti 3: Decode JWT Token</h3>
+    <p>Gunakan website <strong>jwt.io</strong> untuk decode token:</p>
+    <ol>
+        <li>Login ke Sleepy Panda</li>
+        <li>Buka Laravel Tinker: <code>php artisan tinker</code></li>
+        <li>Jalankan: <code>session('access_token')</code></li>
+        <li>Copy token yang muncul</li>
+        <li>Paste ke jwt.io</li>
+        <li>Tunjukkan isi payload (user_id, client_id, expire time)</li>
+    </ol>
+
+    <h3>✅ Bukti 4: Kode Sumber</h3>
+    <p><strong>1. Model User dengan HasApiTokens:</strong></p>
+    <pre><code><span class="comment">// app/Models/User.php</span>
+<span class="keyword">use</span> Laravel\Passport\HasApiTokens;
+
+<span class="keyword">class</span> <span class="function">User</span> <span class="keyword">extends</span> Authenticatable
+{
+    <span class="keyword">use</span> HasApiTokens, HasFactory, Notifiable;</code></pre>
+
+    <p><strong>2. Token Creation saat Login:</strong></p>
+    <pre><code><span class="comment">// AuthController.php - Line 107</span>
+<span class="variable">$token</span> = <span class="variable">$user</span>-><span class="function">createToken</span>(<span class="string">'SleepyPandaApp'</span>)->accessToken;</code></pre>
+
+    <h3>✅ Bukti 5: Composer Dependencies</h3>
+    <pre><code>composer show | findstr passport</code></pre>
+    <p><strong>Output:</strong> <code>laravel/passport v12.x.x Laravel Passport provides OAuth2 server support</code></p>
+
+    <h2>4.2 Script Presentasi</h2>
+    <div class="info-box">
+        <p><strong>Narasi yang Bisa Digunakan:</strong></p>
+        <p>"Aplikasi Sleepy Panda menggunakan <strong>Laravel Passport</strong> sebagai implementasi <strong>OAuth2</strong> untuk manajemen autentikasi. Saat user login, sistem:</p>
+        <ol>
+            <li><strong>Memverifikasi password</strong> dengan membandingkan input terhadap <code>hashed_password</code> di database menggunakan <code>Hash::check()</code></li>
+            <li><strong>Membuat JWT Token</strong> menggunakan <code>$user->createToken()</code> yang disediakan oleh Passport</li>
+            <li><strong>Token berlaku 30 menit</strong> sesuai konfigurasi di AppServiceProvider</li>
+            <li>Token menggunakan algoritma <strong>SHA256</strong> untuk signing</li>
+        </ol>
+        <p>Buktinya bisa dilihat di tabel <code>oauth_access_tokens</code> di database, dan token bisa di-decode di jwt.io untuk melihat payload-nya."</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>5. DIAGRAM VISUAL</h1>
+    
+    <h2>5.1 Struktur JWT Token</h2>
+    <div class="diagram">
+┌──────────────────────────────────────────────────────────────┐
+│                        JWT TOKEN                             │
+├──────────────────┬────────────────────┬─────────────────────┤
+│      HEADER      │      PAYLOAD       │      SIGNATURE       │
+├──────────────────┼────────────────────┼─────────────────────┤
+│  {               │  {                 │                     │
+│    "typ": "JWT", │    "aud": "1",     │  HMACSHA256(        │
+│    "alg": "RS256"│    "jti": "abc...",│    base64(header)+  │
+│  }               │    "iat": 17684...,│    base64(payload), │
+│                  │    "exp": 17684...,│    secret           │
+│                  │    "sub": "123",   │  )                  │
+│                  │    "scopes": []    │                     │
+│                  │  }                 │                     │
+└──────────────────┴────────────────────┴─────────────────────┘
+        │                   │                    │
+        ▼                   ▼                    ▼
+   Algoritma           Data User            Tanda Tangan
+   Enkripsi         & Expire Time            Digital
+    </div>
+
+    <h1>6. KESIMPULAN</h1>
+    
+    <table class="summary-table">
+        <tr>
+            <th>Aspek</th>
+            <th>Implementasi di Sleepy Panda</th>
+        </tr>
+        <tr>
+            <td>OAuth2 Server</td>
+            <td>Laravel Passport v12</td>
+        </tr>
+        <tr>
+            <td>Token Format</td>
+            <td>JWT (JSON Web Token)</td>
+        </tr>
+        <tr>
+            <td>Hash Algorithm</td>
+            <td>SHA256</td>
+        </tr>
+        <tr>
+            <td>Token Expire</td>
+            <td>30 menit</td>
+        </tr>
+        <tr>
+            <td>Password Hash</td>
+            <td>Bcrypt (12 rounds)</td>
+        </tr>
+        <tr>
+            <td>Kolom Password</td>
+            <td>hashed_password</td>
+        </tr>
+        <tr>
+            <td>Storage</td>
+            <td>Database (oauth_access_tokens) + Session</td>
+        </tr>
+    </table>
+
+    <h2>📎 Referensi</h2>
+    <ul>
+        <li>RFC 6749 - OAuth 2.0: <code>https://datatracker.ietf.org/doc/html/rfc6749</code></li>
+        <li>RFC 7519 - JWT: <code>https://datatracker.ietf.org/doc/html/rfc7519</code></li>
+        <li>Laravel Passport: <code>https://laravel.com/docs/passport</code></li>
+        <li>JWT Decoder: <code>https://jwt.io</code></li>
+    </ul>
+
+    <hr style="margin-top: 40px; border: none; border-top: 2px solid #19b7a7;">
+    <p style="text-align: center; color: #666; margin-top: 20px;">
+        <strong>Sleepy Panda Admin Dashboard</strong><br>
+        Dokumentasi OAuth2 & JWT | 2026
+    </p>
+</body>
+</html>

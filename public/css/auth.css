@@ -1,0 +1,394 @@
+/* ========================================
+   Auth Pages CSS - Cleaned & Refined
+   Target UI: 9:16 Portrait Box, Centered Form
+   ======================================== */
+
+:root {
+    --auth-bg-1: #171a35;
+    --auth-bg-2: #1b1f3a;
+    --auth-frame-border: rgba(255, 255, 255, 0.6);
+    /* Reduced border width handled in class */
+    --auth-text: rgba(255, 255, 255, 0.92);
+    --auth-text-muted: rgba(255, 255, 255, 0.60);
+    --auth-field-bg: rgba(255, 255, 255, 0.06);
+    --auth-field-bg-focus: rgba(255, 255, 255, 0.08);
+    --auth-field-border: rgba(255, 255, 255, 0.25);
+    --auth-accent: #19b7a7;
+    --auth-accent-hover: #22c6b5;
+    --auth-danger: #ff6b6b;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--auth-text);
+    background: var(--auth-bg-1);
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Center Horizontal */
+    justify-content: center;
+    /* Center Vertical */
+    padding: 20px;
+}
+
+/* --- THE CONTAINER BOX --- */
+.auth-frame {
+    /* 
+       Height-Driven Scaling for 16:9 Vertical Ratio (Desktop)
+       - Height: 95vh (Maximum Scale)
+       - Aspect Ratio: 9 / 16 (Strict Vertical Portrait)
+       - Width: auto (Calculated automatically from height)
+    */
+    height: 95vh;
+    aspect-ratio: 9 / 16;
+    width: auto;
+
+    /* Box Styling */
+    border: 1.5px solid var(--auth-frame-border);
+    /* Thinner Outline */
+    border-radius: 8px;
+    /* Sharper Corners */
+    background: transparent;
+    padding: 40px 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+    /* Layout Strategy: Flex Column */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    /* Important for modal clipping */
+    /* justify-content: center; REMOVED to allow flex-grow */
+}
+
+/* --- SECTION 1: TOP (Logo & Title) --- */
+.auth-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Takes available top space, centering logo within it */
+    flex: 1;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* Medium gap to Form */
+}
+
+.auth-logo {
+    margin-bottom: 10px;
+}
+
+.auth-logo__img {
+    width: 100px;
+    /* Larger Base Logo */
+    height: auto;
+}
+
+.auth-subtitle {
+    font-size: 13px;
+    text-align: center;
+    color: var(--auth-text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --- SECTION 2: MIDDLE (Form) --- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Compact Gap */
+    width: 100%;
+    margin-bottom: 55px;
+    /* Small gap to Buttons */
+}
+
+.auth-field {
+    position: relative;
+}
+
+.auth-field__icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+}
+
+.auth-input {
+    width: 100%;
+    height: 40px;
+    background: var(--auth-field-bg);
+    border: 1px solid var(--auth-field-border);
+    border-radius: 4px;
+    /* Sharper Corners */
+    padding: 0 15px 0 45px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.auth-input:focus {
+    border-color: var(--auth-accent);
+    background: var(--auth-field-bg-focus);
+    box-shadow: 0 0 0 2px rgba(25, 183, 167, 0.2);
+}
+
+.auth-row--right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-link {
+    color: var(--auth-accent);
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* --- SECTION 3: BOTTOM (Button & Footer) --- */
+.auth-actions {
+    width: 100%;
+    margin-top: 0;
+}
+
+.auth-btn {
+    width: 100%;
+    height: 40px;
+    background: var(--auth-accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    /* Sharper Corners */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    /* Ensure no underline */
+}
+
+.auth-btn:hover {
+    background: var(--auth-accent-hover);
+    text-decoration: none !important;
+}
+
+.auth-btn--secondary {
+    background: #ffffff;
+    color: var(--auth-accent);
+}
+
+.auth-btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-footer .auth-link {
+    font-weight: 500;
+}
+
+/* Helper for Alerts */
+.alert {
+    width: 100%;
+    padding: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    /* Sharper Corners */
+    margin-bottom: 20px;
+    /* Space above form */
+    font-size: 12px;
+}
+
+.alert-danger {
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+.alert-success {
+    background: rgba(0, 255, 0, 0.1);
+    color: #51cf66;
+    border: 1px solid #51cf66;
+}
+
+.text-danger {
+    font-size: 11px;
+    margin-top: 4px;
+    color: #ff6b6b;
+}
+
+/* --- MODALS (Bottom Sheet Style) --- */
+.auth-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(23, 26, 53, 0.85);
+    /* Matches theme dark blue but transparent */
+    backdrop-filter: blur(2px);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.auth-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.auth-modal {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #232845;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 25px 30px 40px 30px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-out;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.auth-modal.show {
+    transform: translateY(0);
+}
+
+.auth-modal__handle {
+    width: 50px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.auth-modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 10px 0;
+}
+
+.auth-modal__text {
+    font-size: 13px;
+    color: var(--auth-text-muted);
+    margin: 0 0 25px 0;
+    line-height: 1.5;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.otp-field {
+    width: 45px;
+    height: 50px;
+    border-radius: 8px;
+    background: var(--auth-field-bg);
+    border: 1px solid var(--auth-field-border);
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.otp-field:focus {
+    border-color: var(--auth-accent);
+    background: var(--auth-field-bg-focus);
+    box-shadow: 0 0 0 2px rgba(25, 183, 167, 0.2);
+}
+
+/* Responsive Mobile */
+@media (max-width: 480px) {
+    .auth-frame {
+        width: 100%;
+        aspect-ratio: unset;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+        padding: 40px 20px;
+    }
+}
+
+/* --- Home Login Specifics --- */
+.auth-frame--home {
+    justify-content: flex-start;
+    /* We use flex-grow on header */
+    padding-bottom: 40px;
+}
+
+.auth-home-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    /* Tightest Gap (Controlled by margins) */
+    flex: 1;
+    width: 100%;
+}
+
+.auth-brand {
+    font-size: 20px;
+    /* Base size for Login/Register */
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+/* --- Home Login Specifc Overrides --- */
+.auth-frame--home .auth-logo__img {
+    width: 120px;
+    /* Much Larger Logo on Home */
+    height: auto;
+}
+
+.auth-frame--home .auth-brand {
+    font-size: 32px;
+    /* Much Larger Title on Home */
+    font-weight: 800;
+    /* Extra Bold */
+    margin-top: 5px;
+    /* Tighter Gap */
+    letter-spacing: 0.5px;
+}
+
+.auth-home-bottom {
+    flex: 0;
+    width: 100%;
+    margin-top: 0;
+}

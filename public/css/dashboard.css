@@ -1,0 +1,596 @@
+/* ========================================
+   Dashboard CSS - Premium Dark Theme (Compact)
+   ======================================== */
+
+:root {
+    --dash-bg: #1a1f3a;
+    --dash-sidebar-bg: #232845;
+    --dash-card-bg: #222741;
+    --dash-border: #2d3350;
+    --dash-text: #ffffff;
+    --dash-text-muted: #8F9BB3;
+    --dash-primary: #5b8ee5;
+    --dash-female: #e75e8d;
+    --dash-male: #2d6bce;
+    --dash-card-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    /* remove underline globally if possible, be careful */
+}
+
+a {
+    text-decoration: none !important;
+}
+
+body {
+    background: var(--dash-bg);
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    color: var(--dash-text);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content.sidebar-open {
+    margin-left: 260px;
+}
+
+/* 
+   DASHBOARD CONTENT 
+*/
+.dashboard-content {
+    padding: 15px 30px 20px 30px;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dash-text-muted);
+    margin-bottom: 15px;
+    /* Reduced margin */
+    display: none;
+    /* Hide title to save space for compact view if needed, but per request usually keeps it. Let's keep it small. */
+}
+
+/* Charts Row */
+.charts-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.chart-card {
+    background: var(--dash-card-bg);
+    border-radius: 12px;
+    padding: 12px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.chart-header h6 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 10px;
+    align-items: flex-end;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #8F9BB3;
+}
+
+.legend-item .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-item .dot.female {
+    background: var(--dash-female);
+}
+
+.legend-item .dot.male {
+    background: var(--dash-male);
+}
+
+.chart-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    min-height: 0;
+}
+
+/* Stats Row */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.stat-card {
+    background: var(--dash-card-bg);
+    border-radius: 12px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 75px;
+}
+
+.stat-content {
+    width: 100%;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+    opacity: 0.9;
+}
+
+.stat-flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-icon-wrapper {
+    width: 40px;
+}
+
+.stat-icon-wrapper i {
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Large Chart */
+.large-chart-card {
+    background: var(--dash-card-bg);
+    border-radius: 12px;
+    padding: 12px;
+    flex: 1;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* STACKED HEADER for Large Chart */
+.chart-header--stacked {
+    flex-direction: column;
+    /* Stack Title and Legend */
+    align-items: flex-start;
+    /* Align strictly to the left */
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+/* Specific fix for the user request: "legend saling tumpuk (atas male, bawah female)" */
+.chart-legend--vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    /* Items start from left */
+    margin-left: 2px;
+    /* Slight adjustment */
+}
+
+.chart-body.large {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .charts-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    body {
+        height: auto;
+        overflow-y: auto;
+    }
+}
+
+/* Jurnal Dashboard Styles */
+.summary-card-dark {
+    background: #2b3052;
+    border-radius: 12px;
+    padding: 10px;
+    /* Reduced from 15px */
+    display: flex;
+    flex-direction: column;
+}
+
+.emoji-md {
+    font-size: 20px;
+    /* Reduced from 28px */
+    margin-bottom: 2px;
+}
+
+.icon-md {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.icon-md i {
+    font-size: 20px;
+    /* Ensure icon font size matches */
+}
+
+.tiny-label {
+    font-size: 10px;
+    color: #8F9BB3;
+    margin-bottom: 2px;
+}
+
+.tiny-val {
+    font-size: 11px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.custom-select-button {
+    background: #2b3052;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+.dropdown-mock {
+    background: #232845;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+
+    .charts-row,
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Moved main-card reset to 992px block below */
+    .profile-btn span {
+        display: none;
+    }
+
+    .dashboard-content {
+        padding: 8px 12px 20px 12px;
+        overflow-y: auto;
+    }
+
+    .large-chart-card {
+        min-height: 250px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /* Reset Jurnal Main Card height on tablets/mobile where columns stack */
+    /* This matches Bootstrap's col-lg breakpoint */
+    .main-card {
+        height: auto !important;
+        overflow: visible !important;
+        min-height: auto !important;
+        /* Ensure min-height doesn't force extra space */
+    }
+
+    /* Force the inner content row to allow scrolling/expansion */
+    .main-card .row.flex-grow-1 {
+        overflow: visible !important;
+        flex-grow: 0 !important;
+        /* Don't force grow if stacking */
+    }
+
+    /* Add some spacing for stacked columns */
+    .col-lg-4,
+    .col-lg-8 {
+        margin-bottom: 15px;
+    }
+}
+
+/* ========================================
+   DATABASE USER PAGE STYLES
+   ======================================== */
+
+.table-card-container {
+    background: #232845;
+    border-radius: var(--dash-card-radius);
+    padding: 25px;
+    margin-top: 20px;
+    /* Ensure it takes remaining height in compact mode if needed */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Table Controls */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.search-bar-wide {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+    /* Limit width */
+}
+
+.search-bar-wide i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dash-text-muted);
+}
+
+.search-bar-wide input {
+    width: 100%;
+    height: 45px;
+    background: #2b3052;
+    border: none;
+    border-radius: 12px;
+    padding: 0 15px 0 45px;
+    color: var(--dash-text);
+    outline: none;
+}
+
+.control-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-control {
+    background: #2b3052;
+    border: none;
+    color: var(--dash-text-muted);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.btn-control:hover {
+    background: #343a61;
+    color: #fff;
+}
+
+/* Custom Table */
+.table-custom {
+    color: var(--dash-text);
+    margin-bottom: 0;
+}
+
+.table-custom thead th {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--dash-text);
+    font-weight: 500;
+    padding: 15px;
+    text-align: left;
+}
+
+.table-custom tbody tr td {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Very subtle separator */
+    padding: 20px 15px;
+    /* Spacious rows */
+    vertical-align: middle;
+    color: #fff;
+}
+
+.table-custom tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.user-cell,
+.contact-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-icon i {
+    font-size: 32px;
+    color: #fff;
+}
+
+.contact-icon i {
+    font-size: 24px;
+    /* Box icon style */
+    color: #fff;
+}
+
+.status-badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.status-badge.active {
+    background: #5b8ee5;
+    color: #ffffff;
+}
+
+.status-badge.inactive {
+    background: #e75e8d;
+    color: #ffffff;
+}
+
+/* Scrollable table body wrapper if needed */
+/* ========================================
+   JURNAL TIDUR PAGE STYLES
+   ======================================== */
+
+.jurnal-container {
+    background: transparent;
+    /* Main wrapper is transparent */
+    padding: 0;
+}
+
+.view-section {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Specific Card Styles */
+.summary-card {
+    background: #2b3052;
+    /* Lighter than main bg */
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-item i {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+}
+
+.detail-item .label {
+    font-size: 9px;
+    color: var(--dash-text-muted);
+}
+
+.detail-item .value {
+    font-size: 11px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* Report Chart Box */
+.report-chart-box {
+    background: #2b3052;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+    min-height: 400px;
+    /* Ensure height */
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-wrapper {
+    flex: 1;
+    position: relative;
+    width: 100%;
+}
+
+/* Dropdown Custom */
+#jurnalFilter {
+    border: 1px solid var(--dash-border);
+    background: #232845;
+    color: #fff;
+    padding: 5px 30px 5px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#jurnalFilter:focus {
+    box-shadow: none;
+    border-color: var(--dash-primary);
+}

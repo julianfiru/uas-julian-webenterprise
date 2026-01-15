@@ -1,0 +1,26 @@
+
+   INFO  Running migrations.  
+
+  2026_01_14_134109_create_oauth_auth_codes_table  8.99ms FAIL
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'oauth_auth_codes' already exists (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: sleepypanda, SQL: create table `oauth_auth_codes` (`id` char(80) not null, `user_id` bigint unsigned not null, `client_id` char(36) not null, `scopes` text null, `revoked` tinyint(1) not null, `expires_at` datetime null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci')
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:831
+    827▕             $exceptionType = $this->isUniqueConstraintError($e)
+    828▕                 ? UniqueConstraintViolationException::class
+    829▕                 : QueryException::class;
+    830▕ 
+  ➜ 831▕             throw new $exceptionType(
+    832▕                 $this->getNameWithReadWriteType(),
+    833▕                 $query,
+    834▕                 $this->prepareBindings($bindings),
+    835▕                 $e,
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:577
+      PDOException::("SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'oauth_auth_codes' already exists")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:577
+      PDOStatement::execute()
+

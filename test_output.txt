@@ -1,0 +1,9 @@
+
+Simple check passed.
+
+   PASS  Tests\Feature\OAuthCheckTest
+  ✓ simple ass… 0.47s  
+
+  Tests:    1 passed (1 assertions)
+  Duration: 0.88s
+
