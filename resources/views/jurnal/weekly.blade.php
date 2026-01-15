@@ -6,10 +6,10 @@
     <h4 class="text-center text-white mb-3">Jurnal Tidur Report</h4>
 
     <!-- Main Container Card -->
-    <div class="main-card" style="background: #232845; border-radius: 20px; padding: 15px;">
+    <div class="main-card d-flex flex-column" style="background: #232845; border-radius: 20px; padding: 15px; height: calc(100vh - 140px);">
         
         <!-- HEADER ROW: Dropdown -->
-        <div class="d-flex justify-content-end align-items-center mb-3">
+        <div class="d-flex justify-content-end align-items-center mb-3 flex-shrink-0">
             <select id="jurnalFilter" class="custom-select-button" onchange="window.location.href=this.value">
                 <option value="{{ route('jurnal.daily') }}">Daily</option>
                 <option value="{{ route('jurnal.weekly') }}" selected>Weekly</option>
@@ -18,10 +18,10 @@
         </div>
 
         <!-- CONTENT ROW -->
-        <div class="row g-3">
+        <div class="row g-3 flex-grow-1" style="min-height: 0;">
             <!-- Left: Summary Card -->
-            <div class="col-lg-4">
-                <div class="summary-card-dark p-3" style="height: 250px;">
+            <div class="col-lg-4 d-flex flex-column">
+                <div class="summary-card-dark p-3 h-100 d-flex flex-column justify-content-center">
                     <div class="text-center text-white mb-3">1 Juni - 7 Juni 2023</div>
                     <div class="row g-2 align-items-center">
                         <div class="col-3 text-center">
@@ -58,14 +58,14 @@
             </div>
 
             <!-- Right: Chart -->
-            <div class="col-lg-8">
-                <div class="report-chart-box p-3" style="background: #2b3052; border-radius: 12px; height: 250px;">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
+            <div class="col-lg-8 d-flex flex-column">
+                <div class="report-chart-box p-3 d-flex flex-column flex-grow-1" style="background: #2b3052; border-radius: 12px;">
+                    <div class="d-flex justify-content-between align-items-start mb-2 flex-shrink-0">
                         <h5 class="text-white m-0" style="font-size: 18px;">Weekly Report</h5>
                         <div class="text-white small">1 Juni - 7 Juni 2023 <i class="fas fa-chevron-down ms-1"></i></div>
                     </div>
-                    <div style="height: 180px;">
-                        <canvas id="weeklyChart"></canvas>
+                    <div class="flex-grow-1" style="min-height: 0; position: relative;">
+                        <canvas id="weeklyChart" style="position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important;"></canvas>
                     </div>
                 </div>
             </div>

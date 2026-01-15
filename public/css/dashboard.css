@@ -601,6 +601,24 @@ body {
     width: 100%;
 }
 
+/* Weekly Bar Chart - Bars aligned to bottom */
+.weekly-bar-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.weekly-bar-wrapper canvas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.weekly-chart-box {
+    min-height: 380px;
+}
+
 /* Dropdown Custom */
 #jurnalFilter {
     border: 1px solid var(--dash-border);
@@ -673,6 +691,15 @@ body {
 
     .main-card .row {
         overflow: visible;
+    }
+
+    /* Reset flex-grow on mobile for chart containers */
+    .main-card .col-lg-8 {
+        min-height: 350px;
+    }
+
+    .main-card .col-lg-4 {
+        margin-bottom: 15px;
     }
 
     /* Dashboard charts - 2 columns */

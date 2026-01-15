@@ -133,73 +133,7 @@
                         </div>
                     </div>
                 </div>
-                    <div class="row h-100">
-                        <!-- Left: Summary Cards -->
-                        <div class="col-lg-5 mb-3 mb-lg-0 d-flex flex-column gap-3">
-                            <div class="summary-card">
-                                <div class="text-center text-white small mb-3">1 Juni - 7 Juni 2023</div>
-                                <div class="row g-2 align-items-center">
-                                    <div class="col-2 text-center">
-                                        <div class="emoji-icon">😑</div>
-                                        <div class="small text-white">User</div>
-                                        <div class="text-white fw-bold">4000</div>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="row g-2">
-                                            <div class="col-6">
-                                                <div class="detail-item">
-                                                    <i class="fas fa-clock text-danger"></i>
-                                                    <div>
-                                                        <div class="label">Average Durasi tidur</div>
-                                                        <div class="value">8 jam 2 menit</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                 <div class="detail-item">
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <div>
-                                                        <div class="label">Total Durasi tidur</div>
-                                                        <div class="value">60 jam 51 menit</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="detail-item">
-                                                    <i class="fas fa-bed text-primary"></i>
-                                                    <div>
-                                                        <div class="label">Average Mulai tidur</div>
-                                                        <div class="value">21:08</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                 <div class="detail-item">
-                                                    <i class="fas fa-sun text-warning"></i>
-                                                    <div>
-                                                        <div class="label">Average Bangun tidur</div>
-                                                        <div class="value">06:30</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Right: Chart -->
-                        <div class="col-lg-7">
-                            <div class="report-chart-box">
-                                <div class="d-flex justify-content-end mb-2">
-                                     <small class="text-white">1 Juni - 7 Juni 2023 <i class="fas fa-chevron-down"></i></small>
-                                </div>
-                                <div class="chart-wrapper">
-                                    <canvas id="weeklyChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- MONTHLY VIEW -->
                 <div id="monthly-view" class="view-section" style="display: none;">
@@ -256,16 +190,77 @@
                     </div>
                 </div>
 
-                <!-- WEEKLY VIEW & MONTHLY VIEW (Hidden for now/Keep structure if needed or merge logic) -->
-                <!-- Ideally we just toggle visibility. For now, I'll keep the Original Weekly/Monthly structure hidden or refactor them same way later if requested. -->
-                <!-- Since the request focused on 'Jurnal Tidur' Daily view matching the image, I will hide the others simpler. -->
-                
-                <div id="weekly-view" class="view-section" style="display: none;">
-                    <div class="text-center text-white py-5">Weekly View Content (To be styled same as Daily if needed)</div>
-                </div>
-                
-                 <div id="monthly-view" class="view-section" style="display: none;">
-                    <div class="text-center text-white py-5">Monthly View Content (To be styled same as Daily if needed)</div>
+                <!-- WEEKLY VIEW -->
+                <div id="weekly-view" class="view-section h-100" style="display: none;">
+                    <div class="row g-3 h-100">
+                        <!-- Left: Summary Card -->
+                        <div class="col-lg-4 d-flex flex-column h-100">
+                            <div class="summary-card flex-grow-1 d-flex flex-column">
+                                <div class="text-center text-white small mb-3">1 Juni - 7 Juni 2023</div>
+                                <div class="row g-2 align-items-center flex-grow-1">
+                                    <div class="col-3 text-center">
+                                        <div class="emoji-icon">😑</div>
+                                        <div class="tiny-label">User</div>
+                                        <div class="text-white fw-bold">4000</div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <div class="detail-item">
+                                                    <i class="fas fa-clock text-danger"></i>
+                                                    <div>
+                                                        <div class="label">Average Durasi tidur</div>
+                                                        <div class="value">8 jam 2 menit</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="detail-item">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                    <div>
+                                                        <div class="label">Total Durasi tidur</div>
+                                                        <div class="value">60 jam 51 menit</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="detail-item">
+                                                    <i class="fas fa-bed text-primary"></i>
+                                                    <div>
+                                                        <div class="label">Average Mulai tidur</div>
+                                                        <div class="value">21:08</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="detail-item">
+                                                    <i class="fas fa-sun text-warning"></i>
+                                                    <div>
+                                                        <div class="label">Average Bangun tidur</div>
+                                                        <div class="value">06:30</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right: Chart -->
+                        <div class="col-lg-8 h-100">
+                            <div class="report-chart-box weekly-chart-box p-4 d-flex flex-column" style="height: 100%;">
+                                <div class="d-flex justify-content-between align-items-center mb-3 flex-shrink-0">
+                                    <h5 class="text-white m-0" style="font-size: 18px;">Weekly Report</h5>
+                                    <div class="dropdown-mock text-white small">
+                                        1 Juni - 7 Juni 2023 <i class="fas fa-chevron-down ms-1"></i>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper weekly-bar-wrapper flex-grow-1 d-flex flex-column justify-content-end" style="min-height: 0;">
+                                    <canvas id="weeklyChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -146,6 +146,39 @@ class AuthController extends Controller
                 ->withInput();
         }
 
+        // Validasi domain email
+        $email = $request->email;
+        $emailParts = explode('@', $email);
+        
+        if (count($emailParts) !== 2) {
+            return redirect()->back()
+                ->withErrors(['email' => 'Format email tidak valid'])
+                ->withInput();
+        }
+
+        $domain = $emailParts[1];
+
+        // Daftar domain yang tidak diizinkan (fake/test domains)
+        $invalidDomains = [
+            'ganteng.com', 'test.com', 'invalid.com', 'fake.com', 
+            'example.com', 'example.org', 'example.net',
+            'mailinator.com', 'tempmail.com', 'throwaway.com',
+            'asdf.com', 'qwerty.com', 'abc.com', 'xyz.com'
+        ];
+
+        if (in_array(strtolower($domain), $invalidDomains)) {
+            return redirect()->back()
+                ->withErrors(['email' => 'Domain email "' . $domain . '" tidak diizinkan untuk registrasi'])
+                ->withInput();
+        }
+
+        // Cek apakah domain memiliki record DNS MX yang valid
+        if (!checkdnsrr($domain, 'MX') && !checkdnsrr($domain, 'A')) {
+            return redirect()->back()
+                ->withErrors(['email' => 'Domain email "' . $domain . '" tidak valid atau tidak ditemukan'])
+                ->withInput();
+        }
+
         // Simpan user baru dengan hashed_password
         $user = User::create([
             'email' => $request->email,

@@ -6,58 +6,90 @@
     <h4 class="text-center text-white mb-4">Jurnal Tidur Report</h4>
 
     <!-- Main Container Card -->
-    <div class="main-card d-flex flex-column" style="background: #232845; border-radius: 20px; height: calc(100vh - 85px); min-height: 500px; padding: 15px;">
+    <div class="main-card monthly-jurnal d-flex flex-column" style="background: #232845; border-radius: 20px; padding: 15px; height: calc(100vh - 140px);">
         
-        <!-- HEADER ROW: Title placeholder (optional) & Dropdown -->
-        <div class="d-flex justify-content-end align-items-center mb-2 flex-shrink-0">
-            <div class="filter-container z-3">
-                <select id="jurnalFilter" class="custom-select-button" onchange="window.location.href=this.value">
-                    <option value="{{ route('jurnal.daily') }}">Daily</option>
-                    <option value="{{ route('jurnal.weekly') }}">Weekly</option>
-                    <option value="{{ route('jurnal.monthly') }}" selected>Monthly</option>
-                </select>
-            </div>
+        <!-- HEADER ROW: Dropdown -->
+        <div class="d-flex justify-content-end align-items-center mb-3 flex-shrink-0">
+            <select id="jurnalFilter" class="custom-select-button" onchange="window.location.href=this.value">
+                <option value="{{ route('jurnal.daily') }}">Daily</option>
+                <option value="{{ route('jurnal.weekly') }}">Weekly</option>
+                <option value="{{ route('jurnal.monthly') }}" selected>Monthly</option>
+            </select>
         </div>
 
         <!-- CONTENT ROW -->
-        <div class="row g-2 flex-grow-1" style="overflow: hidden;">
-             <!-- Left: Summary Cards -->
-            <div class="col-lg-4 d-flex flex-column h-100 gap-2">
-                 <!-- Card 1 -->
-                <div class="summary-card-dark flex-fill d-flex flex-column justify-content-center py-2">
-                     <div class="text-center text-white small mb-3">Juni 2023</div>
-                     <div class="row g-2 align-items-center px-2">
-                        <div class="col-3 text-center">
-                            <div class="emoji-md mb-0">😐</div>
-                            <div class="tiny-label mb-0">User</div>
-                            <div class="fw-bold text-white small">5000</div>
-                        </div>
-                        <div class="col-9">
-                            <div class="row g-2">
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-clock text-danger"></i></div><div class="tiny-label mb-0">Avg Durasi</div><div class="fw-bold text-white small">8j 2m</div></div></div>
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-star text-warning"></i></div><div class="tiny-label mb-0">Total Durasi</div><div class="fw-bold text-white small">60j 51m</div></div></div>
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-bed text-primary"></i></div><div class="tiny-label mb-0">Avg Mulai</div><div class="fw-bold text-white small">21:58</div></div></div>
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-sun text-warning"></i></div><div class="tiny-label mb-0">Avg Bangun</div><div class="fw-bold text-white small">07:10</div></div></div>
+        <div class="row g-3 flex-grow-1" style="min-height: 0; overflow: hidden;">
+            <!-- Left: Summary Cards -->
+            <div class="col-lg-4 d-flex flex-column">
+                <div class="d-flex flex-column gap-2 h-100 justify-content-between">
+                    <!-- Card 1: Juni -->
+                    <div class="summary-card-dark p-2 flex-fill d-flex flex-column justify-content-center">
+                        <div class="text-center text-white small mb-2">Juni 2023</div>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-3 text-center">
+                                <div class="emoji-md">😐</div>
+                                <div class="tiny-label">User</div>
+                                <div class="fw-bold text-white small">5000</div>
+                            </div>
+                            <div class="col-9">
+                                <div class="row g-1">
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-clock text-danger"></i>
+                                        <div class="tiny-label">Avg Durasi</div>
+                                        <div class="fw-bold text-white small">8j 2m</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <div class="tiny-label">Total Durasi</div>
+                                        <div class="fw-bold text-white small">60j 51m</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-bed text-primary"></i>
+                                        <div class="tiny-label">Avg Mulai</div>
+                                        <div class="fw-bold text-white small">21:58</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-sun text-warning"></i>
+                                        <div class="tiny-label">Avg Bangun</div>
+                                        <div class="fw-bold text-white small">07:10</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                 <!-- Card 2 -->
-                <div class="summary-card-dark flex-fill d-flex flex-column justify-content-center py-2">
-                     <div class="text-center text-white small mb-3">Mei 2023</div>
-                     <div class="row g-2 align-items-center px-2">
-                        <div class="col-3 text-center">
-                            <div class="emoji-md mb-0">😍</div>
-                            <div class="tiny-label mb-0">User</div>
-                            <div class="fw-bold text-white small">8000</div>
-                        </div>
-                        <div class="col-9">
-                            <div class="row g-2">
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-clock text-danger"></i></div><div class="tiny-label mb-0">Avg Durasi</div><div class="fw-bold text-white small">7j 35m</div></div></div>
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-star text-warning"></i></div><div class="tiny-label mb-0">Total Durasi</div><div class="fw-bold text-white small">63j 18m</div></div></div>
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-bed text-primary"></i></div><div class="tiny-label mb-0">Avg Mulai</div><div class="fw-bold text-white small">22:48</div></div></div>
-                                <div class="col-6"><div class="text-center"><div class="icon-md mb-0"><i class="fas fa-sun text-warning"></i></div><div class="tiny-label mb-0">Avg Bangun</div><div class="fw-bold text-white small">06:40</div></div></div>
+                    
+                    <!-- Card 2: Mei -->
+                    <div class="summary-card-dark p-2 flex-fill d-flex flex-column justify-content-center">
+                        <div class="text-center text-white small mb-2">Mei 2023</div>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-3 text-center">
+                                <div class="emoji-md">😍</div>
+                                <div class="tiny-label">User</div>
+                                <div class="fw-bold text-white small">8000</div>
+                            </div>
+                            <div class="col-9">
+                                <div class="row g-1">
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-clock text-danger"></i>
+                                        <div class="tiny-label">Avg Durasi</div>
+                                        <div class="fw-bold text-white small">7j 35m</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <div class="tiny-label">Total Durasi</div>
+                                        <div class="fw-bold text-white small">63j 18m</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-bed text-primary"></i>
+                                        <div class="tiny-label">Avg Mulai</div>
+                                        <div class="fw-bold text-white small">22:48</div>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <i class="fas fa-sun text-warning"></i>
+                                        <div class="tiny-label">Avg Bangun</div>
+                                        <div class="fw-bold text-white small">06:40</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -65,16 +97,14 @@
             </div>
 
             <!-- Right: Chart -->
-            <div class="col-lg-8 h-100">
-                 <div class="report-chart-box d-flex flex-column h-100 p-4" style="background: #2b3052; border-radius: 12px;">
+            <div class="col-lg-8 d-flex flex-column">
+                <div class="report-chart-box p-3 d-flex flex-column flex-grow-1" style="background: #2b3052; border-radius: 12px;">
                     <div class="d-flex justify-content-between align-items-start mb-2 flex-shrink-0">
-                         <h5 class="text-white m-0 section-title" style="font-size: 20px;">Monthly Report</h5>
-                         <div class="dropdown-mock text-white small">
-                            Juni 2023 <i class="fas fa-chevron-down ms-1"></i>
-                         </div>
+                        <h5 class="text-white m-0" style="font-size: 18px;">Monthly Report</h5>
+                        <div class="text-white small">Juni 2023 <i class="fas fa-chevron-down ms-1"></i></div>
                     </div>
-                    <div class="chart-wrapper flex-grow-1" style="min-height: 0;">
-                        <canvas id="monthlyChart"></canvas>
+                    <div class="flex-grow-1" style="min-height: 0; position: relative;">
+                        <canvas id="monthlyChart" style="position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important;"></canvas>
                     </div>
                 </div>
             </div>

@@ -125,12 +125,12 @@
             
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                return { valid: false, message: 'username/password incorrect' };
+                return { valid: false, message: 'Format email tidak valid' };
             }
 
             const domain = email.split('@')[1];
-            if (!validDomains.includes(domain)) {
-                return { valid: false, message: 'username/password incorrect' };
+            if (!validDomains.includes(domain.toLowerCase())) {
+                return { valid: false, message: 'Domain email "' + domain + '" tidak diizinkan. Gunakan email provider yang valid (Gmail, Yahoo, Outlook, dll)' };
             }
 
             return { valid: true };

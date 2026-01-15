@@ -1,8 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // --------------------------------------------------------------------
-    // Filter Logic
-    // --------------------------------------------------------------------    // Filter logic removed in favor of separate page routing
+    // Filter Logic - Toggle between views
+    // --------------------------------------------------------------------
+    const jurnalFilter = document.getElementById('jurnalFilter');
+    const dailyView = document.getElementById('daily-view');
+    const weeklyView = document.getElementById('weekly-view');
+    const monthlyView = document.getElementById('monthly-view');
+
+    if (jurnalFilter) {
+        jurnalFilter.addEventListener('change', function () {
+            const selectedValue = this.value;
+
+            // Hide all views
+            if (dailyView) dailyView.style.display = 'none';
+            if (weeklyView) weeklyView.style.display = 'none';
+            if (monthlyView) monthlyView.style.display = 'none';
+
+            // Show selected view
+            if (selectedValue === 'daily' && dailyView) {
+                dailyView.style.display = 'block';
+            } else if (selectedValue === 'weekly' && weeklyView) {
+                weeklyView.style.display = 'block';
+            } else if (selectedValue === 'monthly' && monthlyView) {
+                monthlyView.style.display = 'block';
+            }
+        });
+    }
+
     // --------------------------------------------------------------------
     // Chart Configs
     // --------------------------------------------------------------------
