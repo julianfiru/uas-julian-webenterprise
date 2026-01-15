@@ -43,3 +43,16 @@ Route::get('/jurnal', function() {
 Route::get('/jurnal/daily', [DashboardController::class, 'jurnalDaily'])->name('jurnal.daily');
 Route::get('/jurnal/weekly', [DashboardController::class, 'jurnalWeekly'])->name('jurnal.weekly');
 Route::get('/jurnal/monthly', [DashboardController::class, 'jurnalMonthly'])->name('jurnal.monthly');
+
+// Show JWT Token (untuk copy ke jwt.io)
+Route::get('/show-token', function() {
+    $token = session('access_token');
+    $userName = session('user_name');
+    $userEmail = session('user_email');
+    
+    return view('show-token', [
+        'token' => $token,
+        'userName' => $userName,
+        'userEmail' => $userEmail
+    ]);
+})->name('show-token');
