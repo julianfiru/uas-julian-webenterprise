@@ -244,17 +244,21 @@
                 if (result.success) {
                     currentEmail = email;
                     
-                    // Tutup forgot modal
+                    // TUTUP SEMUA MODAL DULU
                     forgotModal.classList.remove('show');
+                    otpModal.classList.remove('show');
                     
                     // Clear OTP fields
                     otpFields.forEach(field => field.value = '');
                     
-                    // Buka OTP modal (tanpa notifikasi)
+                    // Tunggu animasi tutup selesai (500ms), baru buka OTP modal SAJA
                     setTimeout(function() {
-                        openModal(otpModal);
+                        // Pastikan forgot modal benar-benar tertutup
+                        forgotModal.classList.remove('show');
+                        // Baru buka OTP modal
+                        otpModal.classList.add('show');
                         otpFields[0].focus();
-                    }, 300);
+                    }, 500);
                 } else {
                     alert(result.message || 'Gagal mengirim OTP');
                 }

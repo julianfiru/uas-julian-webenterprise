@@ -3,8 +3,6 @@
 @section('title', 'Dashboard - Sleepy Panda')
 
 @section('content')
-    <h4 class="page-title mb-4">Dashboard</h4>
-
     <!-- Charts Row (Daily, Weekly, Monthly) -->
     <div class="charts-row">
         <!-- Daily Chart -->
@@ -50,7 +48,7 @@
         </div>
     </div>
 
-    <!-- Stats Row -->
+    <!-- Stats Row (4 Cards) -->
     <div class="stats-row">
         <!-- Total Users -->
         <div class="stat-card">
@@ -90,13 +88,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- Average Time -->
+        <div class="stat-card">
+             <div class="stat-content">
+                <p class="stat-label">Average Time</p>
+                <div class="stat-flex">
+                     <div class="stat-icon-wrapper">
+                        <i class="far fa-clock"></i>
+                    </div>
+                    <h3 class="stat-value">154.25</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sleep Time Chart (Line Chart at Bottom) -->
+    <div class="sleep-chart-card">
+        <div class="chart-header">
+            <h6>Average Users Sleep Time</h6>
+            <div class="chart-legend">
+                <span class="legend-item"><span class="dot female"></span> Female</span>
+                <span class="legend-item"><span class="dot male"></span> Male</span>
+            </div>
+        </div>
+        <div class="sleep-chart-body">
+            <canvas id="sleepTimeChart"></canvas>
+        </div>
     </div>
 @endsection
 
 @push('scripts')
     <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script>
-        // Inline chart initialization if needed, but dashboard.js handles it.
-        // If data needs to be dynamic from controller, pass it here.
-    </script>
 @endpush

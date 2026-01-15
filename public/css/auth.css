@@ -269,16 +269,30 @@ body {
     padding: 25px 30px 40px 30px;
     z-index: 100;
     transform: translateY(100%);
-    transition: transform 0.4s ease-out;
+    transition: transform 0.4s ease-out, visibility 0s 0.4s;
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .auth-modal.show {
     transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 0.4s ease-out, visibility 0s 0s;
+}
+
+/* Ensure only one modal visible at a time with z-index */
+#forgotPasswordModal {
+    z-index: 101;
+}
+
+#otpModal {
+    z-index: 102;
 }
 
 .auth-modal__handle {

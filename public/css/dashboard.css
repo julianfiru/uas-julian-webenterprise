@@ -51,7 +51,7 @@ body {
    DASHBOARD CONTENT 
 */
 .dashboard-content {
-    padding: 15px 30px 20px 30px;
+    padding: 15px 20px 20px 20px;
     flex: 1;
     overflow: hidden;
     display: flex;
@@ -197,6 +197,28 @@ body {
     min-height: 150px;
     display: flex;
     flex-direction: column;
+}
+
+/* Sleep Time Chart (Line Chart at Bottom) */
+.sleep-chart-card {
+    background: var(--dash-card-bg);
+    border-radius: 12px;
+    padding: 12px 15px;
+    flex: 1;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sleep-chart-card .chart-header {
+    margin-bottom: 8px;
+}
+
+.sleep-chart-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    min-height: 0;
 }
 
 /* STACKED HEADER for Large Chart */

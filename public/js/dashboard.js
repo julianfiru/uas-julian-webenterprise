@@ -104,6 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             options: {
                 ...commonOptions,
+                barPercentage: 0.4,
+                categoryPercentage: 0.5,
                 scales: {
                     ...commonOptions.scales,
                     y: {
@@ -160,26 +162,26 @@ document.addEventListener('DOMContentLoaded', function () {
         new Chart(sleepTimeCtx, {
             type: 'line',
             data: {
-                labels: ['Time 01', 'Jan 01', 'Jan 02', 'Jan 03', 'Jan 04', 'Jan 05', 'Jan 06'],
+                labels: ['Jan 01', 'Jan 02', 'Jan 03', 'Jan 04', 'Jan 05', 'Jan 06'],
                 datasets: [
                     {
                         label: 'Female',
-                        data: [2.0, 2.5, 4.5, 5.0, 5.5, 6.0, 7.5],
+                        data: [2.0, 4.5, 5.0, 5.5, 6.0, 7.5],
                         borderColor: colors.female,
                         borderWidth: 2,
-                        pointRadius: 3,
+                        pointRadius: 4,
                         pointBackgroundColor: colors.female,
-                        tension: 0,
+                        tension: 0.1,
                         fill: false
                     },
                     {
                         label: 'Male',
-                        data: [3.0, 3.2, 3.5, 4.8, 4.5, 5.5, 7.0],
+                        data: [3.0, 3.5, 4.8, 4.5, 5.5, 7.0],
                         borderColor: colors.male,
                         borderWidth: 2,
-                        pointRadius: 3,
+                        pointRadius: 4,
                         pointBackgroundColor: colors.male,
-                        tension: 0,
+                        tension: 0.1,
                         fill: false
                     }
                 ]
