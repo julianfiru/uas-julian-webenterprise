@@ -616,3 +616,136 @@ body {
     box-shadow: none;
     border-color: var(--dash-primary);
 }
+
+/* ========================================
+   RESPONSIVE - Scale down on smaller screens
+   ======================================== */
+
+/* Small text for Jurnal cards */
+.tiny-label {
+    font-size: 9px;
+    color: var(--dash-text-muted);
+    line-height: 1.2;
+}
+
+.emoji-md {
+    font-size: 24px;
+}
+
+.icon-md i {
+    font-size: 20px;
+}
+
+.summary-card-dark {
+    background: #2b3052;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Responsive scaling using viewport width */
+@media (max-width: 1200px) {
+    .dashboard-content {
+        padding: 10px 15px;
+    }
+
+    .chart-card {
+        height: 180px;
+    }
+
+    .stat-card {
+        height: 65px;
+        padding: 8px 12px;
+    }
+
+    .stat-value {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /* Jurnal - stack vertically on medium screens */
+    .main-card {
+        height: auto !important;
+        min-height: auto;
+        overflow: visible;
+    }
+
+    .main-card .row {
+        overflow: visible;
+    }
+
+    /* Dashboard charts - 2 columns */
+    .charts-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Stats - 2 columns */
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-card {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Single column layout */
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-card {
+        height: 220px;
+    }
+
+    .stat-card {
+        height: 70px;
+    }
+
+    /* Jurnal summary cards - horizontal scroll */
+    .col-lg-4.d-flex.flex-column {
+        flex-direction: row !important;
+        overflow-x: auto;
+        gap: 10px;
+    }
+
+    .summary-card-dark {
+        min-width: 280px;
+        flex-shrink: 0;
+    }
+
+    /* Table responsive */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .custom-table {
+        min-width: 600px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-content {
+        padding: 10px;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        height: auto;
+        padding: 12px;
+    }
+
+    .page-title {
+        font-size: 16px;
+    }
+}

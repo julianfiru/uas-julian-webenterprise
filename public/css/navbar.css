@@ -165,3 +165,72 @@
     background: var(--dash-border);
     margin: 6px 0;
 }
+
+/* ========================================
+   RESPONSIVE NAVBAR
+   ======================================== */
+
+@media (max-width: 992px) {
+    .navbar-center {
+        max-width: 200px;
+        margin: 0 15px;
+    }
+
+    .navbar-brand {
+        font-size: 16px;
+    }
+
+    .navbar-brand img {
+        width: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-navbar {
+        padding: 0 10px;
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-left {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
+    .navbar-center {
+        order: 3;
+        flex: 1 0 100%;
+        max-width: 100%;
+        margin: 10px 0 0 0;
+    }
+
+    .navbar-right {
+        order: 2;
+        flex: 0 0 auto;
+    }
+
+    .navbar-brand span {
+        display: none;
+    }
+
+    .profile-btn span {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand img {
+        width: 30px;
+    }
+
+    .menu-toggle {
+        font-size: 20px;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+    }
+}
